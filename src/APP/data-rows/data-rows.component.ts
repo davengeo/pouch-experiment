@@ -36,6 +36,11 @@ export class DataRowsComponent implements OnInit {
             });
     }
 
+    //*
+    // Usually some business initialization that brings a session-id cookie from the sync-gw after a successful login
+    // Obviously I have delete this one, it should return a promise.
+    //*//
+
     //noinspection JSMethodCanBeStatic
     private initSession(): Promise<void> {
         return Promise.resolve();
