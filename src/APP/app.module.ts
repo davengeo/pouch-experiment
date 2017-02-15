@@ -7,8 +7,7 @@ import {AppComponent} from "./app.component";
 import {DataRowsComponent} from "./data-rows/data-rows.component";
 import {PouchDbService} from "./pouchdb/pouchdb.service";
 import {RouterModule, Routes} from "@angular/router";
-import {ShopHelper} from "./services/shop.helper";
-import {ShopService} from "./services/shop.service";
+
 
 const appRoutes: Routes = [
     {path: '', component: DataRowsComponent},
@@ -26,9 +25,7 @@ const appRoutes: Routes = [
         HttpModule
     ],
     providers: [
-        PouchDbService,
-        ShopService,
-        ShopHelper
+        PouchDbService
     ],
     bootstrap: [AppComponent]
 })

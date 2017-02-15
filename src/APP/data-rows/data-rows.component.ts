@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {PouchDbService} from "../pouchdb/pouchdb.service";
-import {ShopService} from "../services/shop.service";
 
 @Component({
     selector: 'app-data-rows',
@@ -9,11 +8,9 @@ import {ShopService} from "../services/shop.service";
 })
 export class DataRowsComponent implements OnInit {
 
-    //noinspection JSMismatchedCollectionQueryUpdate
-    private rows: Array<string> = [];
+    private rows: any[] = [];
 
-    constructor(private pouchService: PouchDbService,
-                private shopService: ShopService) {
+    constructor(private pouchService: PouchDbService) {
     }
 
     ngOnInit() {
@@ -34,22 +31,13 @@ export class DataRowsComponent implements OnInit {
                 this.pouchService
                     .replicate()
                     .subscribe(changes => {
-                        this.rows.push(changes);
+                        this.rows = this.rows.concat(changes);
                     });
             });
     }
 
-    private initSession() {
-        let perId = null;
-        //noinspection TypeScriptUnresolvedVariable
-        return this.shopService
-            .getPerId()
-            .then(response => {
-                perId = response['perId'];
-                return this.shopService.getProfiles(perId)
-            })
-            .then(profiles => this.shopService.setShopId(perId, profiles[0].delegationUnitIdentifier))
-            .then(() => this.shopService.session())
-            .catch(error => console.log('found error:', error));
+    //noinspection JSMethodCanBeStatic
+    private initSession(): Promise<void> {
+        return Promise.resolve();
     }
 }

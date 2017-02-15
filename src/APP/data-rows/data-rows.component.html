@@ -1,4 +1,4 @@
-<li *ngFor="let object of rows">
-    {{ object | json }}
+<li *ngFor="let object of rows; let i = index">
+    {{i}}{{ object | json }}
 </li>
 
