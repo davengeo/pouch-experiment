@@ -34,7 +34,7 @@ export class DataRowsComponent implements OnInit {
                 this.pouchService
                     .replicate()
                     .subscribe(changes => {
-                        this.rows = changes;
+                        this.rows.push(changes);
                     });
             });
     }

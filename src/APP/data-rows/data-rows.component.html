@@ -1,11 +1,4 @@
-<table>
-    <td>
-        <div *ngFor="let item of rows">
-            <tr>
-                <div>{{item | json}}</div>
-            </tr>
-
-        </div>
-    </td>
-</table>
+<li *ngFor="let object of rows">
+    {{ object | json }}
+</li>
 
