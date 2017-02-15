@@ -1,3 +1,11 @@
-<p>
-  data-rows works 1!
-</p>
+<table>
+    <td>
+        <div *ngFor="let item of rows">
+            <tr>
+                <div>{{item | json}}</div>
+            </tr>
+
+        </div>
+    </td>
+</table>
+

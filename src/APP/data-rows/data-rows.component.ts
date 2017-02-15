@@ -9,8 +9,12 @@ import {ShopService} from "../services/shop.service";
 })
 export class DataRowsComponent implements OnInit {
 
+    //noinspection JSMismatchedCollectionQueryUpdate
+    private rows: Array<string> = [];
+
     constructor(private pouchService: PouchDbService,
-    private shopService: ShopService) {}
+                private shopService: ShopService) {
+    }
 
     ngOnInit() {
         this.pouchService
@@ -27,7 +31,11 @@ export class DataRowsComponent implements OnInit {
         this.initSession()
             .then(() => {
                 console.log('proceed with replication');
-                this.pouchService.replicate().subscribe();
+                this.pouchService
+                    .replicate()
+                    .subscribe(changes => {
+                        this.rows = changes;
+                    });
             });
     }
 

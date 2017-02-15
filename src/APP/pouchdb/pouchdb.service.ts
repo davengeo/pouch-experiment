@@ -29,14 +29,17 @@ export class PouchDbService {
     }
 
     replicate(): Observable<any> {
+        const changes = [];
         return Observable.create(observer => {
             this.db.replicate.from(this.dbRemote)
                 .on('change', change => {
                     console.info('changes', change);
+                    //noinspection TypeScriptUnresolvedVariable
+                    changes.push(change.docs);
                 })
                 .on('complete', complete => {
                     console.info('complete', complete);
-                    observer.next();
+                    observer.next(changes);
                     observer.complete();
                 })
                 .on('pause', pause => {
