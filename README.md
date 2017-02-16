@@ -10,7 +10,7 @@ It needs as backend running in the same machine
 * the small middleware in https://github.com/davengeo/middle-patch
 * The couchbase sync-gateway https://github.com/couchbase/sync_gateway
 
-	It shows than the pouchdb replication from is suboptimal by using direct protocol with the sync-gateway.
+	It shows than the pouchdb replication.from mechanism behaves suboptimal by using direct protocol with the sync-gateway.
  This is due the lack of support of sync-gateway for 'application/json'. They use instead 'multipart/mixed'.
  When an agent in the middle makes the translation then is remarkable the gain in performance.. 
  I have added some screenshots in the /screenshots folder to illustrate that.  
